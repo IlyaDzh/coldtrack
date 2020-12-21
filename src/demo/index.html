@@ -1,0 +1,77 @@
+{% set title = "Live Demo" %}
+
+{% set description = "This policy describes Privacy Policy for Katalyo d.o.o." %}
+
+{% set urlPage = "demo" %}
+
+{% set state = "demo" %}
+
+{% extends "template/base.html" %}
+
+{% block content %}
+
+	<article class="center demo">
+
+		<div class="demo__content">
+
+			<h1 class="h2">
+				{{ title }}
+			</h1>
+
+			<p>
+				This policy describes Privacy Policy for Katalyo d.o.o. (In this document also referred as "us", "we" or "our") which is meant to help you understand how we collect and process your information to support our products. This applies to all personal information that we collect when you interact with us in any form. This includes information collected through our website, social networking services and through our direct marketing campaigns or other communication channels.
+			</p>
+
+		</div>
+
+		<form action="/" class="demo-form">
+
+			<label class="demo-form__drop">
+
+				<input type="file" class="demo-form__drop-input">
+
+				<span class="demo-form__drop-wrap">
+
+					<span class="demo-form__drop-ico">
+
+						<svg width="72" height="72" viewBox="0 0 72 72"><path d="M26.36 53l-3.38-3.2L36.5 35.6l13.53 14.2L46.7 53l-6.96-7.35-.87-.91V62.5h-4.62V44.74l-.86.9-7.03 7.35zm6.26-35.92l.13.3H67V62.5H47.75v-4.63h14.63V22h-32.6l-2.43-5.33-.14-.3H10.75v41.5h14.63v4.63H6.13V11.75h24.06l2.43 5.33z" fill="#342BDB" stroke="#F5F5FC"/></svg>
+
+					</span>
+
+					<span class="demo-form__drop-text">
+						Drop files here, or <b>browse</b>
+					</span>
+
+				</span>
+
+				<span class="demo-form__drop-uploading">
+
+					<span class="demo-form__drop-uploading-head">
+						Uploading
+					</span>
+
+					<span class="demo-form__drop-uploading-progress">
+
+						<span class="demo-form__drop-uploading-progress-bar" style="width: 24%"></span>
+
+					</span>
+
+					<span class="demo-form__drop-uploading-timer">
+						24%  •  12 seconds
+					</span>
+
+				</span>
+
+			</label>
+
+			<h2 class="demo-form__head">
+				Files
+			</h2>
+
+{% include "demo/table.html" %}
+
+		</form>
+
+	</article>
+
+{% endblock %}
