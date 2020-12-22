@@ -41,7 +41,7 @@
 
 		@media ($desktop) {
 
-			width: 256px;
+			width: 248px;
 			flex-shrink: 0;
 
 		}
