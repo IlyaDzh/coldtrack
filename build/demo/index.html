@@ -9,7 +9,16 @@
 	<link href="/css/styles.css" rel="preload" as="style">
 	<link href="/js/scripts.js" rel="preload" as="script">
 
-	<link href="http://coldstack.io/favicon.png" rel="apple-touch-icon-precomposed">
+  <script>
+    const PAGE_STATE = 'demo'
+    const API_PATH = ''
+  </script>
+
+  <script src="/js-demo/lib/web3.min.js"></script>
+  <script src="/js-demo/lib/bignumber.min.js"></script>
+  <script type='module' src='/js-demo/index.js'></script>
+
+	<link href="http://coldstack.wndrbase.com/favicon.png" rel="apple-touch-icon-precomposed">
 
 	<meta name="format-detection" content="telephone=no">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -18,18 +27,18 @@
 
 	<meta property="og:locale" content="en_EN">
 	<meta property="og:site_name" content="ColdStack">
-	<meta property="og:url" content="http://coldstack.io/demo/">
+	<meta property="og:url" content="http://coldstack.wndrbase.com/demo/">
 	<meta property="og:type" content="website">
 	<meta property="og:title" content="Live Demo">
 	<meta property="og:description" content="This policy describes Privacy Policy for Katalyo d.o.o.">
 
-	<meta property="og:image" content="http://coldstack.io/og.png">
-	<meta property="og:image:secure_url" content="http://coldstack.io/og.png">
+	<meta property="og:image" content="http://coldstack.wndrbase.com/og.png">
+	<meta property="og:image:secure_url" content="http://coldstack.wndrbase.com/og.png">
 
 	<meta property="og:image:width" content="1200">
 	<meta property="og:image:height" content="630">
 
-	<meta property="og:image" content="http://coldstack.io/og-236.png">
+	<meta property="og:image" content="http://coldstack.wndrbase.com/og-236.png">
 
 	<meta property="og:image:width" content="236">
 	<meta property="og:image:height" content="236">
@@ -51,13 +60,17 @@
 
 <div class="wrapper">
 
-	<header class="header">
+	<header id=header class="header">
 
-		<a href="/" class="header__logo" title="ColdStack">
+		<div class="header__logo">
 
-			<img src="/img/logo.svg" alt="ColdStack" loading="lazy" width="209" height="42">
+			<a href="/" title="ColdStack">
 
-		</a>
+				<img src="/img/logo.svg" alt="ColdStack" loading="lazy" width="209" height="42">
+
+			</a>
+
+		</div>
 
 		<div class="header__menu">
 
@@ -101,26 +114,42 @@
 
 		</div>
 
-		<div class="header__btn">
 
-            <div style="width: 145px"></div>
+		<div class="header__wallet" id='header_logged_in' style='display:none'>
 
-			<!-- <button type="button" class="btn btn--outline" data-modal="select-wallet">
+			<a class="wallet">
+				<span class="wallet__value">
+					<span class="hidden-xs" id='balance'>0000000096</span> CLS
+				</span>
+				<span class="wallet__name" id='account'>
+				</span>
+			</a>
+
+		</div>
+
+		<div class="header__btn" id='header_logged_out'>
+
+			<button type="button" class="btn btn--outline" data-modal="select-wallet">
 				<svg width="20" height="20" viewBox="0 0 20 20">
 					<path d="M16 6H3.5v-.5l11-.88v.88H16V4c0-1.1-.9-1.87-1.98-1.72L3.98 3.72A2.38 2.38 0 002 6v10c0 1.1.9 2 2 2h12a2 2 0 002-2V8a2 2 0 00-2-2zm-1.5 7a1.5 1.5 0 110-3 1.5 1.5 0 010 3z"/>
 				</svg>
 				Unlock Wallet
-			</button> -->
+			</button>
 
 		</div>
 
-		<button class="button btn-menu-toggle" type="button" aria-label="Menu">
-			<span class="btn-menu-toggle__top"></span>
-			<span class="btn-menu-toggle__center"></span>
-			<span class="btn-menu-toggle__bottom"></span>
-		</button>
+		<div class="header__btn-menu visible-md">
+
+			<button class="button btn-menu-toggle" type="button" aria-label="Menu">
+				<span class="btn-menu-toggle__top"></span>
+				<span class="btn-menu-toggle__center"></span>
+				<span class="btn-menu-toggle__bottom"></span>
+			</button>
+
+		</div>
 
 	</header>
+
 
 	<main class="main">
 
@@ -144,9 +173,9 @@
 
 			<label class="demo-form__drop">
 
-				<input type="file" class="demo-form__drop-input">
+				<input type="file" class="demo-form__drop-input" id='file-input'>
 
-				<span class="demo-form__drop-wrap">
+				<span class="demo-form__drop-wrap" id='drop-area'>
 
 					<span class="demo-form__drop-ico">
 
@@ -168,12 +197,11 @@
 
 					<span class="demo-form__drop-uploading-progress">
 
-						<span class="demo-form__drop-uploading-progress-bar" style="width: 24%"></span>
+						<span id='progress-bar' class="demo-form__drop-uploading-progress-bar" style="width: 0%"></span>
 
 					</span>
 
-					<span class="demo-form__drop-uploading-timer">
-						24%  •  12 seconds
+					<span id=timer class="demo-form__drop-uploading-timer">
 					</span>
 
 				</span>
@@ -205,59 +233,13 @@
 
 		</thead>
 
-		<tbody>
+		<tbody id='files'>
 
-			<tr>
-				<td aria-label="ID">
-					<div class="demo-table__btns">
-						<button type="button" class="button demo-table__modal" data-modal="file-details">
-							45580a394b684eeb16aee125f950634
-						</button>
-						<button type="button" class="button demo-table__open">
-							<svg width="10" height="6" viewBox="0 0 10 6">
-								<path d="M8.1.86a.7.7 0 01.98 0c.28.27.28.7 0 .97L5.14 5.66a.7.7 0 01-1 0L.2 1.83a.68.68 0 010-.97.7.7 0 011 0L4.64 4 8.1.86z"/>
-							</svg>
-						</button>
-					</div>
-				</td>
-				<td aria-label="File Name">
-					aabbbname.txt
-				</td>
-				<td aria-label="Date">
-					11/20/2020
-				</td>
-				<td aria-label="Size">
-					8,224 Kb
-				</td>
-			</tr>
-
-			<tr>
-				<td aria-label="ID">
-					<div class="demo-table__btns">
-						<button type="button" class="button demo-table__modal" data-modal="file-details">
-							45580a394b684eeb16aee125f950634
-						</button>
-						<button type="button" class="button demo-table__open">
-							<svg width="10" height="6" viewBox="0 0 10 6">
-								<path d="M8.1.86a.7.7 0 01.98 0c.28.27.28.7 0 .97L5.14 5.66a.7.7 0 01-1 0L.2 1.83a.68.68 0 010-.97.7.7 0 011 0L4.64 4 8.1.86z"/>
-							</svg>
-						</button>
-					</div>
-				</td>
-				<td aria-label="File Name">
-					aabbbname.txt
-				</td>
-				<td aria-label="Date">
-					11/20/2020
-				</td>
-				<td aria-label="Size">
-					8,224 Kb
-				</td>
-			</tr>
 
 		</tbody>
 
 	</table>
+
 
 		</form>
 
@@ -397,11 +379,9 @@
 				</div>
 
 				<p class="modal-info__text">
-					Transaction submitted
 				</p>
 
 				<p class="modal-info__text-second">
-					<a href="/">View on Etherscan</a>
 				</p>
 
 				<div class="modal-info__btn">
@@ -429,7 +409,6 @@
 				</div>
 
 				<p class="modal-info__text">
-					Transaction failed, please try again
 				</p>
 
 				<div class="modal-info__btn">
@@ -468,11 +447,9 @@
 				</div>
 
 				<p class="modal-info__text">
-					Waiting for confirmation
 				</p>
 
 				<p class="modal-info__text-second">
-					Confirm this transaction in your wallet
 				</p>
 
 				<div class="modal-info__btn">
@@ -551,7 +528,7 @@
 
 						</span>
 
-						<input type="radio" class="select-wallet__input visuallyhidden" name="select-wallet" value="Ledger" checked="checked">
+						<input type="radio" class="select-wallet__input visuallyhidden" name="select-wallet" value="Ledger">
 
 						<span class="select-wallet__label">
 							Ledger
@@ -598,7 +575,7 @@
 
 										<p class="tooltip">
 											<span class="tooltip__inner">
-												File Creation Transaction Hash <small>(Rinkbey testnet)</small>
+												Global unique file identifier
 											</span>
 										</p>
 
@@ -607,8 +584,7 @@
 								</th>
 								<td>
 
-									<p class="file-details__table-value">
-										45580a394b684eeb16aee125f950634
+									<p class="file-details__table-value" id='file-details-id'>
 									</p>
 
 								</td>
@@ -627,7 +603,7 @@
 
 										<p class="tooltip">
 											<span class="tooltip__inner">
-												File Creation Transaction Hash <small>(Rinkbey testnet)</small>
+												File name
 											</span>
 										</p>
 
@@ -636,8 +612,7 @@
 								</th>
 								<td>
 
-									<p class="file-details__table-value">
-										aabbbname.txt
+									<p class="file-details__table-value" id='file-details-name'>
 									</p>
 
 								</td>
@@ -656,7 +631,7 @@
 
 										<p class="tooltip">
 											<span class="tooltip__inner">
-												File Creation Transaction Hash <small>(Rinkbey testnet)</small>
+												File size
 											</span>
 										</p>
 
@@ -665,8 +640,7 @@
 								</th>
 								<td>
 
-									<p class="file-details__table-value">
-										8,224 Kb
+									<p class="file-details__table-value" id='file-details-size'>
 									</p>
 
 								</td>
@@ -680,12 +654,12 @@
 									<div class="file-details__table-tooltip">
 
 										<div class="file-details__table-key">
-											Upload Time:
+											File upload time
 										</div>
 
 										<p class="tooltip">
 											<span class="tooltip__inner">
-												File Creation Transaction Hash <small>(Rinkbey testnet)</small>
+												File upload time
 											</span>
 										</p>
 
@@ -694,8 +668,8 @@
 								</th>
 								<td>
 
-									<p class="file-details__table-value">
-										11:52:53 11/20/2020
+									<p class="file-details__table-value" id='file-details-creation-time'>
+
 									</p>
 
 								</td>
@@ -714,7 +688,7 @@
 
 										<p class="tooltip">
 											<span class="tooltip__inner">
-												File Creation Transaction Hash <small>(Rinkbey testnet)</small>
+												Storage cost per month
 											</span>
 										</p>
 
@@ -723,8 +697,7 @@
 								</th>
 								<td>
 
-									<p class="file-details__table-value">
-										$ 0.002452
+									<p class="file-details__table-value" id='file-details-price-per-month'>
 									</p>
 
 								</td>
@@ -743,7 +716,7 @@
 
 										<p class="tooltip">
 											<span class="tooltip__inner">
-												File Creation Transaction Hash <small>(Rinkbey testnet)</small>
+                        Owner of file identified by Ethereum account
 											</span>
 										</p>
 
@@ -752,10 +725,7 @@
 								</th>
 								<td>
 
-									<p class="file-details__table-value">
-										<a download="aabbbname.txt" href="/favicon.png">
-											0x7e760d6A6d63304A46289DdBdB9248d4863b3Ba7
-										</a>
+									<p class="file-details__table-value" id='file-details-owner'>
 									</p>
 
 								</td>
@@ -768,8 +738,8 @@
 								<td>
 
 									<p class="file-details__table-value file-details__table-ellipsis">
-										<a download="aabbbname.txt" href="/favicon.png" class="text-ellipsis">
-											0xa8c648bbf477c7a0e6598b66741c4df3b4b1f51a03c337083abfdd28141dc95c1c4df3b4b1f51a03c33
+										<a class="text-ellipsis" id='file-details-txhash' target='__blank'>
+
 										</a>
 									</p>
 
@@ -791,9 +761,17 @@
 
 				<div class="file-details__download">
 
-					<a class="btn btn--green" download="aabbbname.txt" href="/favicon.png">
+					<a id='download' class="btn btn--green" href="/favicon.png">
 						Download
 					</a>
+
+          <div id='not_an_owner' class="file-details__download-notowner">
+            <div>You are not an owner of this file</div>
+            <div><small>
+              Sorry, you cannot download this file because you are not its owner
+            </small></div>
+
+          </div>
 
 				</div>
 
@@ -803,11 +781,13 @@
 					</svg>
 				</button>
 
+
 			</div>
 
 		</div>
 
 	</div>
+
 
 	<form action="/" class="cookie hide">
 

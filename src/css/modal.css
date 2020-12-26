@@ -282,6 +282,12 @@
 
 	&__download {
 
+    align-items: center;
+
+    &-notowner{
+      margin-left: 24px;
+    }
+
 		display: flex;
 		padding: 24px;
 

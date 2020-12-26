@@ -5,7 +5,8 @@
 		return;
 
 	}
-
+  
+  /*
 	form.addEventListener('change', event => {
 
 		if(event.target.classList.contains('demo-form__drop-input')) {
@@ -20,6 +21,7 @@
 		}
 
 	});
+  */
 
 	// accordion table
 

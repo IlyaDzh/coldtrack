@@ -1,4 +1,4 @@
-( modal => {
+window.Modal = ( modal => {
 
 	if(!modal) {
 
@@ -7,7 +7,7 @@
 	}
 
 	const items = modal.querySelectorAll('.modal__item'),
-		  btns = document.querySelectorAll('[data-modal]'),
+		  btns = document.querySelectorAll('[data-modal=select-wallet]'),
 		  wrapper = document.querySelector('.wrapper');
 
 	let activeModal = false,
@@ -25,7 +25,7 @@
 
 	};
 
-	const modalShow = selector => {
+	const modalShow = (selector, message, secondMessage) => {
 
 		if(!activeModal){
 
@@ -34,6 +34,20 @@
 		}
 
 		activeModal = modal.querySelector('.modal__item--' + selector);
+
+    
+    if(message){
+      activeModal.querySelector(".modal-info__text").innerText = message
+    }
+
+    const secondMessageEl = activeModal.querySelector(".modal-info__text-second")
+    if(secondMessage){
+      secondMessageEl.innerHTML = secondMessage
+    } else {
+      if(secondMessageEl != null){
+        secondMessageEl.innerHTML = ''
+      }
+    }
 
 		Array.from(items, el => el.classList.toggle('visuallyhidden', el !== activeModal));
 
@@ -66,5 +80,7 @@
 	Array.from(btns, el =>
 		el.addEventListener('click', () =>
 			modalShow(el.getAttribute('data-modal'))));
+  
+  return {modalShow, hideModal}
 
 })(document.querySelector('.modal'));

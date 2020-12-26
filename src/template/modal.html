@@ -27,11 +27,9 @@
 				</div>
 
 				<p class="modal-info__text">
-					Transaction submitted
 				</p>
 
 				<p class="modal-info__text-second">
-					<a href="/">View on Etherscan</a>
 				</p>
 
 				<div class="modal-info__btn">
@@ -59,7 +57,6 @@
 				</div>
 
 				<p class="modal-info__text">
-					Transaction failed, please try again
 				</p>
 
 				<div class="modal-info__btn">
@@ -98,11 +95,9 @@
 				</div>
 
 				<p class="modal-info__text">
-					Waiting for confirmation
 				</p>
 
 				<p class="modal-info__text-second">
-					Confirm this transaction in your wallet
 				</p>
 
 				<div class="modal-info__btn">
@@ -181,7 +176,7 @@
 
 						</span>
 
-						<input type="radio" class="select-wallet__input visuallyhidden" name="select-wallet" value="Ledger" checked="checked">
+						<input type="radio" class="select-wallet__input visuallyhidden" name="select-wallet" value="Ledger">
 
 						<span class="select-wallet__label">
 							Ledger
@@ -228,7 +223,7 @@
 
 										<p class="tooltip">
 											<span class="tooltip__inner">
-												File Creation Transaction Hash <small>(Rinkbey testnet)</small>
+												Global unique file identifier
 											</span>
 										</p>
 
@@ -237,8 +232,7 @@
 								</th>
 								<td>
 
-									<p class="file-details__table-value">
-										45580a394b684eeb16aee125f950634
+									<p class="file-details__table-value" id='file-details-id'>
 									</p>
 
 								</td>
@@ -257,7 +251,7 @@
 
 										<p class="tooltip">
 											<span class="tooltip__inner">
-												File Creation Transaction Hash <small>(Rinkbey testnet)</small>
+												File name
 											</span>
 										</p>
 
@@ -266,8 +260,7 @@
 								</th>
 								<td>
 
-									<p class="file-details__table-value">
-										aabbbname.txt
+									<p class="file-details__table-value" id='file-details-name'>
 									</p>
 
 								</td>
@@ -286,7 +279,7 @@
 
 										<p class="tooltip">
 											<span class="tooltip__inner">
-												File Creation Transaction Hash <small>(Rinkbey testnet)</small>
+												File size
 											</span>
 										</p>
 
@@ -295,8 +288,7 @@
 								</th>
 								<td>
 
-									<p class="file-details__table-value">
-										8,224 Kb
+									<p class="file-details__table-value" id='file-details-size'>
 									</p>
 
 								</td>
@@ -310,12 +302,12 @@
 									<div class="file-details__table-tooltip">
 
 										<div class="file-details__table-key">
-											Upload Time:
+											File upload time
 										</div>
 
 										<p class="tooltip">
 											<span class="tooltip__inner">
-												File Creation Transaction Hash <small>(Rinkbey testnet)</small>
+												File upload time
 											</span>
 										</p>
 
@@ -324,8 +316,8 @@
 								</th>
 								<td>
 
-									<p class="file-details__table-value">
-										11:52:53 11/20/2020
+									<p class="file-details__table-value" id='file-details-creation-time'>
+
 									</p>
 
 								</td>
@@ -344,7 +336,7 @@
 
 										<p class="tooltip">
 											<span class="tooltip__inner">
-												File Creation Transaction Hash <small>(Rinkbey testnet)</small>
+												Storage cost per month
 											</span>
 										</p>
 
@@ -353,8 +345,7 @@
 								</th>
 								<td>
 
-									<p class="file-details__table-value">
-										$ 0.002452
+									<p class="file-details__table-value" id='file-details-price-per-month'>
 									</p>
 
 								</td>
@@ -373,7 +364,7 @@
 
 										<p class="tooltip">
 											<span class="tooltip__inner">
-												File Creation Transaction Hash <small>(Rinkbey testnet)</small>
+                        Owner of file identified by Ethereum account
 											</span>
 										</p>
 
@@ -382,10 +373,7 @@
 								</th>
 								<td>
 
-									<p class="file-details__table-value">
-										<a download="aabbbname.txt" href="/favicon.png">
-											0x7e760d6A6d63304A46289DdBdB9248d4863b3Ba7
-										</a>
+									<p class="file-details__table-value" id='file-details-owner'>
 									</p>
 
 								</td>
@@ -398,8 +386,8 @@
 								<td>
 
 									<p class="file-details__table-value file-details__table-ellipsis">
-										<a download="aabbbname.txt" href="/favicon.png" class="text-ellipsis">
-											0xa8c648bbf477c7a0e6598b66741c4df3b4b1f51a03c337083abfdd28141dc95c1c4df3b4b1f51a03c33
+										<a class="text-ellipsis" id='file-details-txhash' target='__blank'>
+
 										</a>
 									</p>
 
@@ -421,9 +409,17 @@
 
 				<div class="file-details__download">
 
-					<a class="btn btn--green" download="aabbbname.txt" href="/favicon.png">
+					<a id='download' class="btn btn--green" href="/favicon.png">
 						Download
 					</a>
+
+          <div id='not_an_owner' class="file-details__download-notowner">
+            <div>You are not an owner of this file</div>
+            <div><small>
+              Sorry, you cannot download this file because you are not its owner
+            </small></div>
+
+          </div>
 
 				</div>
 
@@ -432,6 +428,7 @@
 						<path d="M18.38 6.77l-1.33-1.32L12 10.48 6.97 5.45 5.65 6.77l5.04 5.04-5.04 5.04 1.32 1.32 5.04-5.03 5.04 5.03 1.32-1.32-5.03-5.04 5.04-5.04z"/>
 					</svg>
 				</button>
+
 
 			</div>
 
