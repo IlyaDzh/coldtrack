@@ -1,4 +1,4 @@
-import {connectMetamask, ensureMetamask, requestAccount, uploadFile, 
+import {connectMetamask, ensureWalletConnected, requestAccount, uploadFile, 
   downloadFile, getFiles} from './index.js'
 import {settings, settingsPromise} from './api.js'
 import {getAccount} from './eth.js'
@@ -17,7 +17,7 @@ function initUploadArea(){
   $('#drop-area').addEventListener('dragover', onFileDragOver) 
   $('#file-input').addEventListener('click', async e => {
     try {
-      await ensureMetamask()
+      await ensureWalletConnected()
     } catch(ex) {
       // prevent open file dialog if no metamask
       e.preventDefault()
@@ -50,7 +50,7 @@ function initUploadArea(){
   }
 
   async function upload(file){
-    ensureMetamask()
+    ensureWalletConnected()
     uploadFile(file, {onUploadProgress})
   }
 }
@@ -153,7 +153,7 @@ function showFileDetails(id){
 
   $('#download').onclick = async e => {
     e.preventDefault()
-    ensureMetamask()
+    ensureWalletConnected()
     if(isOwner){
       Modal.modalShow('waiting', 'Waiting for confirmation')
       await downloadFile(id)

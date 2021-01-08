@@ -58,6 +58,13 @@ export function ensureMetamask(){
   ensureRinkebyNetwork()
 }
 
+export function ensureWalletConnected(){
+  ensureMetamask()
+  if(eth.getAccount() == null){
+    throw new Error('Please connect wallet')
+  }
+}
+
 async function fetchAndRenderFiles(){
   files = await api.fetchFiles()
   ui.renderFiles(files)
@@ -119,7 +126,7 @@ export async function connectMetamask(acc){
 
 
 export async function uploadFile(file, {onUploadProgress}){
-  ensureMetamask()
+  ensureWalletConnected()
   Modal.modalShow('waiting', 'Connecting to server')
   const {id, secret} = await api.requestUpload()
   const receipt = await eth.payForUpload({id, size: file.size, filename: file.name})
@@ -139,7 +146,7 @@ export async function uploadFile(file, {onUploadProgress}){
 }
 
 export async function downloadFile(id){
-  ensureMetamask()
+  ensureWalletConnected()
   const signature = await eth.signDownloadRequest(id)
   const {nonce} = await api.request_download({id, signature})
   api.download_file(nonce)
