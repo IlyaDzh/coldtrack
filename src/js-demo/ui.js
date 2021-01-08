@@ -139,6 +139,8 @@ function showFileDetails(id){
     (getAccount().toLowerCase() == file.owner.toLowerCase())
 
   $('#not_an_owner').style.display = isOwner ? 'none' : 'block'
+  
+  $('#download').disabled = !isOwner
 
   $('#download').onclick = async e => {
     e.preventDefault()
