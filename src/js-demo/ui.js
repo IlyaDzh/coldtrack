@@ -15,6 +15,15 @@ function esc(text){
 function initUploadArea(){
   $('#drop-area').addEventListener('drop', onFileDrop)
   $('#drop-area').addEventListener('dragover', onFileDragOver) 
+  $('#file-input').addEventListener('click', async e => {
+    try {
+      await ensureMetamask()
+    } catch(ex) {
+      // prevent open file dialog if no metamask
+      e.preventDefault()
+      throw ex
+    }
+  })
   $('#file-input').addEventListener('change', e => {
     const file = e.target.files[0]
     upload(file)
