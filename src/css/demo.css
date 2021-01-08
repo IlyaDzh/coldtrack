@@ -14,6 +14,11 @@
 
 			margin: 36px 0;
 
+      b {
+          color: var(--green);
+          font-weight: 400;
+      }
+
 		}
 
 	}
