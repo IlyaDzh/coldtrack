@@ -135,7 +135,8 @@ function showFileDetails(id){
   $('#file-details-txhash').innerText = file.txhash
   $('#file-details-txhash').href = 'https://rinkeby.etherscan.io/tx/' + file.txhash
 
-  const isOwner = getAccount().toLowerCase() == file.owner.toLowerCase()
+  const isOwner = (getAccount() != null) && 
+    (getAccount().toLowerCase() == file.owner.toLowerCase())
 
   $('#not_an_owner').style.display = isOwner ? 'none' : 'block'
 
