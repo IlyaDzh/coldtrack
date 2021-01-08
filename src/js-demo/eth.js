@@ -52,7 +52,7 @@ export async function payForUpload({id, size, filename}){
             View on Etherscan
           </a>
         `
-        Modal.modalShow('waiting', 'Transaction submitted', etherscan)
+        Modal.modalShow('waiting', 'Transaction submitted. Mining in progress, please wait.', etherscan)
       })
       .on('receipt', resolve)
       .on('error', reject)
@@ -71,7 +71,7 @@ export async function payForUpload({id, size, filename}){
             View on Etherscan
           </a>
         `
-        Modal.modalShow('waiting', 'Transaction submitted', etherscan)
+        Modal.modalShow('waiting', 'Transaction submitted. Mining in progress, please wait.', etherscan)
       })
       .on('receipt', resolve)
       .on('error', reject)
