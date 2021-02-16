@@ -1,8 +1,6 @@
-const BASE_URL = API_PATH == ''
-  ? location.protocol + '//api.' + window.location.host + '/'
-  : API_PATH
-
 export let settings
+
+const BASE_URL = location.protocol + '//api.' + window.location.host + '/'
 
 // TODO hide app until settings fetched
 export const settingsPromise = fetchAPI('settings')
