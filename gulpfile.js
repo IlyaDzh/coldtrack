@@ -18,7 +18,6 @@ const rename           = require('gulp-rename');
 
 const plumber          = require('gulp-plumber');
 const server           = require('browser-sync').create();
-const ftp              = require('gulp-ftp');
 const replace          = require('gulp-replace');
 const filter           = require('gulp-filter');
 
@@ -37,19 +36,6 @@ let config             = null;
 const site             = 'ColdStack';
 const domain           = 'coldstack.wndrbase.com';
 
-try {
-
-	config           = require('./config.json');
-
-	config.ftp.remotePath += domain;
-
-
-}catch(e){
-
-	console.log("config the file doesn't exists");
-
-}
-
 gulp.task('html', function() {
 	return gulp.src('src/**/index.html', {since: gulp.lastRun('html')})
 		.pipe(plumber())
@@ -58,7 +44,6 @@ gulp.task('html', function() {
 			data: {
 				url: 'http://' + domain,
 				site: site,
-        API_PATH: process.env.API_PATH,
 			},
 			path: 'src/'
 		}))
@@ -202,26 +187,6 @@ gulp.task('copy', function() {
 
 });
 
-gulp.task('ftp', function () {
-
-	if(!config) {
-
-		return true;
-
-	}
-
-	const f = filter('**/*.html', {restore: true});
-
-	return gulp.src('build/**/*', {since: gulp.lastRun('ftp')})
-		.pipe(debug({title: 'ftp:'}))
-		.pipe(f)
-		.pipe(replace('css/styles.css', 'css/styles.min.css?' + Date.now()))
-		.pipe(replace('js/scripts.js', 'js/scripts.min.js?' + Date.now()))
-		.pipe(f.restore)
-		.pipe(ftp(config.ftp));
-
-});
-
 gulp.task('watch', function() {
 	gulp.watch('src/js-demo/**/*.js', gulp.series('js-demo'));
 	gulp.watch('src/js/*.*', gulp.series('js'));
@@ -229,7 +194,6 @@ gulp.task('watch', function() {
 	gulp.watch('src/**/index.html', gulp.series('html'));
 	gulp.watch(['src/**/*.html','!src/**/index.html'], gulp.series('html-touch'));
 	gulp.watch(['src/**/*.*', '!src/**/*.{css,html}'], gulp.series('copy'));
-	gulp.watch('build/**/*.*', gulp.series('ftp'));
 });
 
 gulp.task('default', gulp.series(
@@ -237,5 +201,5 @@ gulp.task('default', gulp.series(
 	gulp.parallel('css','js', 'js-demo'),
 	'html',
 	'copy',
-	gulp.parallel('ftp','watch','serve')
+	gulp.parallel('watch','serve')
 	));
