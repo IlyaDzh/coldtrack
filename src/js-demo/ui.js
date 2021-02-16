@@ -143,6 +143,9 @@ function showFileDetails(id){
   $('#file-details-owner').innerText = file.owner
   $('#file-details-txhash').innerText = file.txhash
   $('#file-details-txhash').href = 'https://rinkeby.etherscan.io/tx/' + file.txhash
+  $('#file-details-substrate-blockhash').innerText = file.substrate_extrinsic_hash
+  const EXPLORER_URL = location.protocol + '//explorer.' + window.location.host + '/#/explorer/'
+  $('#file-details-substrate-blockhash').href = EXPLORER_URL + 'query/' + file.substrate_blockhash
 
   const isOwner = (getAccount() != null) && 
     (getAccount().toLowerCase() == file.owner.toLowerCase())
