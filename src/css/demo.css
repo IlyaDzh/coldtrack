@@ -15,7 +15,7 @@
 			margin: 36px 0;
 
       b {
-          color: var(--green);
+          color: var(--orange);
           font-weight: 400;
       }
 
@@ -86,7 +86,7 @@
 
 						display: block;
 						height: 6px;
-						background-color: var(--green);
+						background-color: var(--orange);
 						border-radius: 6px;
 
 					}

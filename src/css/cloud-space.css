@@ -1,116 +1,74 @@
 .cloud-space {
 
-	margin: 72px 0;
+    margin: 72px 0;
 
-	@media ($mdWidth) {
+    @media ($mdWidth) {
 
-		margin: 36px 0;
+        margin: 36px 0;
 
-	}
+    }
 
-	@media ($smWidth) {
+    @media ($smWidth) {
 
-		margin: 32px 0;
+        margin: 32px 0;
 
-	}
+    }
 
-	&__box {
+    &__content {
 
-		display: flex;
-		padding-top: 24px;
+        padding: 48px 0 0;
+        text-align: center;
 
-		@media ($smWidth) {
+        @media ($smWidth) {
 
-			display: block;
-			padding: 0;
-			text-align: center;
+            padding: 0;
 
-		}
+        }
 
-	}
+    }
 
-	&__content {
+    p {
 
-		padding: 24px 0 0;
+        font-size: 24px;
+        font-weight: 500;
+        line-height: 40px;
+        margin: 24px auto 60px;
+        max-width: 825px;
 
-		@media ($smWidth) {
+        @media ($mdWidth) {
 
-			padding: 0;
+            font-size: 20px;
+            line-height: 30px;
+            margin: 18px 0 30px;
 
-		}
+        }
 
-	}
+    }
 
-	&__img {
+    &__btns {
 
-		padding: 0 58px;
-		flex-shrink: 0;
+        display: flex;
+        justify-content: center;
 
-		@media ($mdWidth) {
+        .btn {
 
-			padding: 0;
+            margin-right: 24px;
 
-			img {
+        }
 
-				width: 260px;
-				height: 282px;
+        @media ($smWidth) {
 
-			}
+            justify-content: center;
+            margin: 0 -10px;
 
-		}
+            .btn {
 
-		@media ($smWidth) {
+                margin: 0 10px;
 
-			img {
+            }
 
-				margin: 40px auto 30px;
+        }
 
-			}
-
-		}
-
-	}
-
-	p {
-
-		font-size: 24px;
-		font-weight: 300;
-		line-height: 40px;
-		margin: 36px 0 60px;
-
-		@media ($mdWidth) {
-
-			font-size: 20px;
-			line-height: 30px;
-			margin: 20px 0 30px;
-
-		}
-
-	}
-
-	&__btns {
-
-		display: flex;
-
-		.btn {
-
-			margin-right: 24px;
-
-		}
-
-		@media ($smWidth) {
-
-			justify-content: center;
-			margin: 0 -10px;
-
-			.btn {
-
-				margin: 0 10px;
-
-			}
-
-		}
-
-	}
+    }
 
 }

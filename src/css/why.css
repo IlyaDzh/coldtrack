@@ -64,7 +64,6 @@
 
 		.h4 {
 
-			color: var(--blue);
 			margin: 24px 0 6px;
 
 		}
@@ -73,7 +72,7 @@
 
 			b {
 
-				color: var(--green);
+				color: var(--orange);
 				font-weight: 400;
 
 			}

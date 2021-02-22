@@ -39,7 +39,7 @@
 		width: 100%;
 
 		&__red,
-		&__green {
+		&__orange {
 
 			display: block;
 			color: var(--red);
@@ -48,9 +48,9 @@
 
 		}
 
-		&__green {
+		&__orange {
 
-			color: var(--green);
+			color: var(--orange);
 
 		}
 
