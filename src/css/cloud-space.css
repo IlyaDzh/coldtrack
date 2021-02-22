@@ -1,30 +1,17 @@
 .cloud-space {
 
-    margin: 72px 0;
+    min-height: calc(100vh - 120px);
+    padding: 72px 0;
+    display: flex;
+    align-items: center;
 
     @media ($mdWidth) {
-
-        margin: 36px 0;
-
-    }
-
-    @media ($smWidth) {
-
-        margin: 32px 0;
-
+        padding: 36px 0;
+        min-height: calc(100vh - 77px);
     }
 
     &__content {
-
-        padding: 48px 0 0;
         text-align: center;
-
-        @media ($smWidth) {
-
-            padding: 0;
-
-        }
-
     }
 
     p {
