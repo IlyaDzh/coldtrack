@@ -13,7 +13,7 @@ const $ = document.querySelector.bind(document);
 
 function esc(text) {
     const textnode = document.createTextNode(
-        text.length > 30 ? text.slice(0, 10) + "..." + text.slice(-10) : text
+        text.length > 25 ? text.slice(0, 10) + "..." + text.slice(-10) : text
     );
     const el = document.createElement("p");
     el.appendChild(textnode);
