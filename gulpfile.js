@@ -140,7 +140,7 @@ gulp.task('css', function () {
 
 gulp.task('js', function() {
 
-	return gulp.src(['src/js/*.min.js','src/js/js.js','src/js/*.js','!src/js/swiper.min.js'])
+	return gulp.src(['src/js/*.min.js','src/js/js.js','src/js/*.js'])
 		.pipe(sourcemaps.init())
 		.pipe(concat('scripts.js'))
 		.pipe(babel({
@@ -168,8 +168,6 @@ gulp.task('js-demo', function() {
 });
 
 gulp.task('serve', function() {
-
-	gulp.src('src/js/swiper.min.js').pipe(gulp.dest('build/js'));
 
 	server.init({
 		server: 'build',

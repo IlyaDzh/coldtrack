@@ -223,7 +223,6 @@
 	&__list {
 
 		padding: 24px;
-		background: color(#e7e6fb a(50%));
 		border-radius: 12px;
 		counter-reset: headings 0;
 		position: relative;
@@ -276,6 +275,7 @@
 		li {
 
 			padding-left: 48px;
+            font-weight: 500;
 
 			@media ($smWidth) {
 
@@ -296,7 +296,7 @@
 				position: absolute;
 				top: 0;
 				left: 6px;
-				color: var(--blue);
+				color: var(--text);
 
 			}
 
