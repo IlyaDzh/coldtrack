@@ -250,6 +250,10 @@
 
         }
 
+        tr td:nth-child(2) {
+            word-break: break-word;
+        }
+
         td {
 
             padding: 20px 12px;
