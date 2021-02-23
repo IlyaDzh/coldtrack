@@ -17,35 +17,6 @@
 
 	}
 
-	&__rotate-left {
-
-		position: absolute;
-		top: -134px;
-		left: 36px;
-
-		@media ($mdWidth) {
-
-			display: none;
-
-		}
-
-	}
-
-	&__rotate-right {
-
-		position: absolute;
-		top: 0;
-		right: 36px;
-
-		@media ($mdWidth) {
-
-			top: -118px;
-			right: 20px;
-
-		}
-
-	}
-
 	&__title {
 
 		text-align: center;

@@ -138,6 +138,7 @@
 		}
 
 		a {
+            font-weight: 500;
 
 			@media ($desktop) {
 

@@ -12,6 +12,7 @@
     font-family: 'Commissioner';
     font-style: normal;
     font-weight: 400;
+    font-display: swap;
     src: local(''),
         url('../fonts/commissioner-v3-latin-regular.woff2') format('woff2'),
         url('../fonts/commissioner-v3-latin-regular.woff') format('woff');
@@ -21,6 +22,7 @@
     font-family: 'Commissioner';
     font-style: normal;
     font-weight: 500;
+    font-display: swap;
     src: local(''),
         url('../fonts/commissioner-v3-latin-500.woff2') format('woff2'),
         url('../fonts/commissioner-v3-latin-500.woff') format('woff');
@@ -30,7 +32,28 @@
     font-family: 'Commissioner';
     font-style: normal;
     font-weight: 700;
+    font-display: swap;
     src: local(''),
         url('../fonts/commissioner-v3-latin-700.woff2') format('woff2'),
         url('../fonts/commissioner-v3-latin-700.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: local(''),
+        url('../fonts/raleway-v19-latin-regular.woff2') format('woff2'),
+        url('../fonts/raleway-v19-latin-regular.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: local(''),
+        url('../fonts/raleway-v19-latin-500.woff2') format('woff2'),
+        url('../fonts/raleway-v19-latin-500.woff') format('woff');
 }

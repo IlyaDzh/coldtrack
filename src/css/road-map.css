@@ -9,34 +9,6 @@
 
 	}
 
-	&__rotate-left {
-
-		position: absolute;
-		top: -8px;
-		left: 36px;;
-
-		@media ($smWidth) {
-
-			display: none;
-
-		}
-
-	}
-
-	&__rotate-right {
-
-		position: absolute;
-		top: 266px;
-		right: 36px;;
-
-		@media ($smWidth) {
-
-			display: none;
-
-		}
-
-	}
-
 	&__title {
 
 		text-align: center;
@@ -46,6 +18,7 @@
 	&__intro {
 
 		font-size: 18px;
+        font-weight: 500;
 		line-height: 30px;
 		text-align: center;
 		margin: 24px 0;

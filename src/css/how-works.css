@@ -31,22 +31,6 @@
 
 	}
 
-	&__rotate-left {
-
-		position: absolute;
-		top: -16px;
-		left: 36px;
-
-		@media ($smWidth) {
-
-			top: -125px;
-			left: 50%;
-			margin-left: -46px;
-
-		}
-
-	}
-
 	&__box {
 
 		display: flex;
@@ -70,6 +54,7 @@
 	&__intro {
 
 		font-size: 18px;
+        font-weight: 500;
 		line-height: 30px;
 		text-align: center;
 		margin: 24px 0 48px;
@@ -158,6 +143,7 @@
 
 			margin: 24px 0;
             line-height: 30px;
+            font-weight: 500;
             
             b {
                 color: var(--orange);
