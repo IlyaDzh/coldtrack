@@ -6,7 +6,7 @@ import {
     downloadFile,
     getFiles
 } from "./index.js";
-import { settings, settingsPromise } from "./api.js";
+import { settings, settingsPromise, fetchFiles } from "./api.js";
 import { getAccount } from "./eth.js";
 
 const $ = document.querySelector.bind(document);
@@ -84,9 +84,19 @@ export async function initWalletUI() {
     );
 }
 
-export async function initDemoUI() {
-    initUploadArea();
+export async function initDemoUI(){
+  initUploadArea()
+
+  $('#files').addEventListener('click', e => {
+    const id = e.target.dataset.id
+    if(id != null){
+      showFileDetails(id)
+    }
+  })
+
+  initFileLoadOnScroll()
 }
+
 
 function formatSize(size) {
     return (
@@ -96,10 +106,40 @@ function formatSize(size) {
     );
 }
 
-export async function renderFiles(files) {
-    // TODO spinner
-    function row(file) {
-        return `
+let files, nexttoken
+let isLoadingFiles = false
+
+async function initFileLoadOnScroll(){
+  window.addEventListener('scroll', async () => {
+    const scrollEnd = (window.innerHeight + window.scrollY) >= document.body.offsetHeight;
+    if(!scrollEnd){
+      return
+    }
+    if(isLoadingFiles){
+      return
+    }
+    if(nexttoken == null){
+      // no more files
+      return
+    }
+    try {
+      isLoadingFiles = true
+      const result = await fetchFiles({nexttoken})
+      files = files.concat(result.files)
+      nexttoken = result.nexttoken
+      renderFiles({files, nexttoken})
+    } finally {
+      isLoadingFiles = false
+    }
+
+  })
+}
+
+export async function renderFiles(data){
+  ({files, nexttoken} = data)
+  // TODO spinner
+  function row(file) {
+    return `
 			<tr>
 				<td aria-label="ID">
 					<div class="demo-table__btns">
@@ -130,12 +170,6 @@ export async function renderFiles(files) {
         html += row(file);
     }
     $("#files").innerHTML = html;
-    $("#files").addEventListener("click", e => {
-        const id = e.target.dataset.id;
-        if (id != null) {
-            showFileDetails(id);
-        }
-    });
 }
 
 function getPrice(size) {

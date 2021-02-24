@@ -2,8 +2,6 @@ import * as ui from './ui.js'
 import * as eth from './eth.js'
 import * as api from './api.js'
 
-let files
-
 class MetamaskError extends Error {}
 
 window.addEventListener('unhandledrejection', function(event) {
@@ -80,7 +78,7 @@ export function ensureWalletConnected(){
 }
 
 async function fetchAndRenderFiles(){
-  files = await api.fetchFiles()
+  const files = await api.fetchFiles()
   ui.renderFiles(files)
 }
 
