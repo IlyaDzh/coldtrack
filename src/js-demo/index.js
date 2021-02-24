@@ -4,6 +4,8 @@ import * as api from './api.js'
 
 let files
 
+class MetamaskError extends Error {}
+
 window.addEventListener('unhandledrejection', function(event) {
   const message = 'Error: ' + event.reason.message || event.reason
   Modal.modalShow('failed', message)
@@ -42,18 +44,30 @@ const onMetamaskConnect = new Promise((resolve) => {
 
 })
 
-Promise.all([onMetamaskConnect, api.settingsPromise]).then(() => connectMetamask())
+Promise.all([onMetamaskConnect, api.settingsPromise]).then(async () => {
+  try {
+    await connectMetamask()
+  }catch(e){
+    if(e instanceof MetamaskError){
+      // Could not connect to Metamask on startup, don't show errors and let user 
+      // connect manually
+      console.log('could not connect to metamask, do nothing', e)
+    } else {
+      throw e
+    }
+  }
+})
 
 
 function ensureRinkebyNetwork(){
   if(parseInt(ethereum.chainId) != api.settings.chain_id){
-    throw new Error('Please select Rinkeby Test Network')
+    throw new MetamaskError('Please select Rinkeby Test Network')
   }
 }
 
 export function ensureMetamask(){
   if(!window.ethereum){
-    throw new Error('Please install and enable Metamask')
+    throw new MetamaskError('Please install and enable Metamask')
   }
   ensureRinkebyNetwork()
 }
@@ -61,7 +75,7 @@ export function ensureMetamask(){
 export function ensureWalletConnected(){
   ensureMetamask()
   if(eth.getAccount() == null){
-    throw new Error('Please connect wallet')
+    throw new MetamaskError('Please connect wallet')
   }
 }
 
@@ -80,7 +94,11 @@ export async function requestAccount(){
   try {
     [acc] = await ethereum.request({method: 'eth_requestAccounts'})
   } catch(e) {
-    e.message = 'Could not connect to wallet: ' + e.message
+    if(e.code == -32002){
+      e.message = 'Account request is already pending'
+    } else {
+      e.message = 'Could not connect to wallet: ' + e.message
+    }
     throw e
   }
   return acc
