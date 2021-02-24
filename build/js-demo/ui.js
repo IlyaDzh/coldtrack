@@ -4,7 +4,6 @@ import {
     requestAccount,
     uploadFile,
     downloadFile,
-    getFiles
 } from "./index.js";
 import { settings, settingsPromise, fetchFiles } from "./api.js";
 import { getAccount } from "./eth.js";
@@ -183,7 +182,7 @@ function getPrice(size) {
 }
 
 function showFileDetails(id) {
-    const file = getFiles().find(file => file.id == id);
+    const file = files.find(file => file.id == id);
     $("#file-details-id").innerText = file.id;
     $("#file-details-name").innerText = file.filename;
     $("#file-details-size").innerText = formatSize(file.size);

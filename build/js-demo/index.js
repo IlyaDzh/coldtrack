@@ -82,10 +82,6 @@ async function fetchAndRenderFiles(){
   ui.renderFiles(files)
 }
 
-export function getFiles(){
-  return files
-}
-
 export async function requestAccount(){
   ensureMetamask()
   let acc
