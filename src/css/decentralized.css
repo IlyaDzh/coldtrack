@@ -16,43 +16,29 @@
         flex-wrap: wrap;
         justify-content: center;
         align-items: center;
-        margin: 36px -36px;
+        margin: 36px 0;
 
-        img {
+        a {
 
-            margin: 12px 42px;
+            margin: 18px 66px;
 
-        }
+            @media ($mdWidth) {
 
-        @media ($mdWidth) {
+                margin: 14px 33px;
 
-            margin: 24px -24px;
+            }
 
-            img {
+            @media ($smWidth) {
 
-                margin: 12px 24px;
+                margin: 12px 18px;
 
             }
 
         }
 
-        @media ($mdWidth) {
+        @media ($smWidth) {
 
-            margin: 26px -14px 34px;
-
-            img {
-
-                width: auto;
-                height: 36px;
-                margin: 14px;
-
-            }
-
-        }
-
-        @media ($xsWidth) {
-
-            margin: 26px -10px 34px;
+            margin: 26px 0 34px;
 
         }
 
