@@ -18,10 +18,14 @@ export function getAccount(){
 }
 
 export async function getTokenBalance(address){
-  // TODO remove
-  //console.log('getting ether balance')
-  //const etherB = await getEtherBalance(address)
-  //console.log('etherB', etherB)
+  try {
+    console.log('myWeb3', myWeb3)
+    console.log('myWeb3.eth', myWeb3.eth)
+    console.log('myWeb3.eth.Contract', myWeb3.eth.Contract)
+    console.log('typeof(myWeb3.eth.Contract)', typeof(myWeb3.eth.Contract))
+  } catch(e) {
+    console.log('error when printing debug info', e)
+  }
   const token = new myWeb3.eth.Contract(ERC20_ABI, settings.cls_token_address)
   return token.methods.balanceOf(address).call()
 }
