@@ -20,41 +20,43 @@ if(PAGE_STATE=='demo'){
   })
 }
 
-const onMetamaskConnect = new Promise((resolve) => {
+if(localStorage.isMetamaskConnected){
+  const onMetamaskLoad = new Promise((resolve) => {
 
-  function handle(){
-    if(window.ethereum && window.ethereum.isConnected()){
-      resolve()
-    } else {
-      if(window.ethereum){
-        window.ethereum.on('connect', resolve)
+    function handle(){
+      if(window.ethereum && window.ethereum.isConnected()){
+        resolve()
+      } else {
+        if(window.ethereum){
+          window.ethereum.on('connect', resolve)
+        }
       }
     }
-  }
 
-  if(window.ethereum){
-    handle()
-  } else {
-    window.addEventListener('load', () => {
+    if(window.ethereum){
       handle()
-    })
-  }
-
-})
-
-Promise.all([onMetamaskConnect, api.settingsPromise]).then(async () => {
-  try {
-    await connectMetamask()
-  }catch(e){
-    if(e instanceof MetamaskError){
-      // Could not connect to Metamask on startup, don't show errors and let user 
-      // connect manually
-      console.log('could not connect to metamask, do nothing', e)
     } else {
-      throw e
+      window.addEventListener('load', () => {
+        handle()
+      })
     }
-  }
-})
+
+  })
+
+  Promise.all([onMetamaskLoad, api.settingsPromise]).then(async () => {
+    try {
+      await connectMetamask()
+    }catch(e){
+      if(e instanceof MetamaskError){
+        // Could not connect to Metamask on startup, don't show errors and let user 
+        // connect manually
+        console.log('could not connect to metamask, do nothing', e)
+      } else {
+        throw e
+      }
+    }
+  })
+}
 
 
 function ensureRinkebyNetwork(){
@@ -88,12 +90,15 @@ export async function requestAccount(){
   try {
     [acc] = await ethereum.request({method: 'eth_requestAccounts'})
   } catch(e) {
+    let message
     if(e.code == -32002){
-      e.message = 'Account request is already pending'
+      message = 'Account request is already pending'
     } else {
-      e.message = 'Could not connect to wallet: ' + e.message
+      message = 'Could not connect to wallet: ' + e.message
     }
-    throw e
+    const error = new MetamaskError(message)
+    error.code = e.code
+    throw error
   }
   return acc
 }
@@ -105,6 +110,7 @@ export async function connectMetamask(acc){
     acc = await requestAccount()
   }
 
+  localStorage.isMetamaskConnected = true
 
   ethereum.on('chainChanged', (_chainId) => window.location.reload());
 
