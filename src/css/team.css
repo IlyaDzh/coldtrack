@@ -175,5 +175,13 @@
 
     }
 
+    &__our-team{
+        padding-bottom: 96px;
+    }
+
+    &__advisory-board{
+        padding-top: 64px;
+        border-top: 1px solid var(--border);
+    }   
 
 }
