@@ -1,116 +1,74 @@
 .cloud-space {
+    position: relative;
+    min-height: 70vh;
+    padding: 180px 0 120px;
+    display: flex;
+    align-items: center;
+    background-image: linear-gradient(180deg, #f4f6fd 0%, rgba(244, 246, 253, 0) 100%);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top center;
 
-	margin: 72px 0;
+    @media ($mdWidth) {
+        padding: 80px 0;
+    }
 
-	@media ($mdWidth) {
+    &__background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+    }
 
-		margin: 36px 0;
+    &__content {
+        text-align: center;
+    }
 
-	}
+    p {
 
-	@media ($smWidth) {
+        font-size: 24px;
+        font-weight: 500;
+        line-height: 40px;
+        margin: 24px auto 60px;
+        max-width: 825px;
 
-		margin: 32px 0;
+        @media ($mdWidth) {
 
-	}
+            font-size: 20px;
+            line-height: 30px;
+            margin: 18px 0 30px;
 
-	&__box {
+        }
 
-		display: flex;
-		padding-top: 24px;
+    }
 
-		@media ($smWidth) {
+    &__btns {
 
-			display: block;
-			padding: 0;
-			text-align: center;
+        display: flex;
+        justify-content: center;
 
-		}
+        .btn {
 
-	}
+            margin-right: 24px;
 
-	&__content {
+        }
 
-		padding: 24px 0 0;
+        @media ($smWidth) {
 
-		@media ($smWidth) {
+            justify-content: center;
+            margin: 0 -10px;
 
-			padding: 0;
+            .btn {
 
-		}
+                margin: 0 10px;
 
-	}
+            }
 
-	&__img {
+        }
 
-		padding: 0 58px;
-		flex-shrink: 0;
-
-		@media ($mdWidth) {
-
-			padding: 0;
-
-			img {
-
-				width: 260px;
-				height: 282px;
-
-			}
-
-		}
-
-		@media ($smWidth) {
-
-			img {
-
-				margin: 40px auto 30px;
-
-			}
-
-		}
-
-	}
-
-	p {
-
-		font-size: 24px;
-		font-weight: 300;
-		line-height: 40px;
-		margin: 36px 0 60px;
-
-		@media ($mdWidth) {
-
-			font-size: 20px;
-			line-height: 30px;
-			margin: 20px 0 30px;
-
-		}
-
-	}
-
-	&__btns {
-
-		display: flex;
-
-		.btn {
-
-			margin-right: 24px;
-
-		}
-
-		@media ($smWidth) {
-
-			justify-content: center;
-			margin: 0 -10px;
-
-			.btn {
-
-				margin: 0 10px;
-
-			}
-
-		}
-
-	}
+    }
 
 }

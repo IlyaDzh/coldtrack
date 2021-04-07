@@ -64,7 +64,7 @@
 
 			&:hover {
 
-				background-color: #524BE0;
+				background-color: #2d74fb;
 
 			}
 
@@ -72,15 +72,15 @@
 
 	}
 
-	&--green {
+	&--orange {
 
-		background-color: var(--green);
+		background-color: var(--orange);
 
 		@media ($desktop) {
 
 			&:hover {
 
-				background-color: #36C76E;
+				background-color: #ff9430;
 
 			}
 

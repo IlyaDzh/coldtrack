@@ -35,7 +35,7 @@
 			border-radius: 50%;
 			margin-left: 10px;
 			flex-shrink: 0;
-			background-color: var(--green);
+			background-color: var(--orange);
 			content: '';
 
 		}

@@ -24,8 +24,8 @@ export function requestToken(account){
   })
 }
 
-export function fetchFiles(){
-  return fetchAPI('files').then(resp => resp.json())
+export function fetchFiles({nexttoken = ''} = {}){
+  return fetchAPI('files?nexttoken=' + nexttoken).then(resp => resp.json())
 }
 
 export function requestUpload(){

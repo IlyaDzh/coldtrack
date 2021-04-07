@@ -64,16 +64,17 @@
 
 		.h4 {
 
-			color: var(--blue);
 			margin: 24px 0 6px;
+            font-weight: 500;
 
 		}
 
 		p {
-
+            font-weight: 500;
+            
 			b {
 
-				color: var(--green);
+				color: var(--orange);
 				font-weight: 400;
 
 			}

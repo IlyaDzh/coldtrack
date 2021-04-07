@@ -1,78 +1,65 @@
 .decentralized {
 
-	text-align: center;
-	margin: 132px 0 96px;
+    text-align: center;
+    background-color: #f4f6fd;
+    padding: 96px 0;
 
-	@media ($mdWidth) {
+    @media ($mdWidth) {
 
-		margin: 80px 0 60px;
+        padding: 48px 0;
 
-	}
+    }
 
-	&__logo {
+    &__logo {
 
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: center;
-		align-items: center;
-		margin: 36px -36px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        margin: 36px 0;
 
-		img {
+        a {
 
-			margin: 12px 36px;
+            margin: 18px 66px;
 
-		}
+            @media ($mdWidth) {
 
-		@media ($mdWidth) {
+                margin: 14px 33px;
 
-			margin: 24px -24px;
+            }
 
-			img {
+            @media ($smWidth) {
 
-				margin: 12px 24px;
+                margin: 12px 8px;
 
-			}
+            }
 
-		}
+        }
 
-		@media ($mdWidth) {
+        @media ($smWidth) {
 
-			margin:	26px -14px 34px;
+            margin: 26px 0 34px;
 
-			img {
+        }
 
-				width: auto;
-				height: 36px;
-				margin: 14px;
+    }
 
-			}
+    p {
 
-		}
+        font-size: 24px;
+        font-weight: 500;
+        line-height: 40px;
+        width: 680px;
+        max-width: 100%;
+        margin: auto;
 
-		@media ($xsWidth) {
+        @media ($mdWidth) {
 
-			margin:	26px -10px 34px;
+            font-size: 20px;
+            line-height: 30px;
 
-		}
+        }
 
-	}
-
-	p {
-
-		font-size: 24px;
-		font-weight: 300;
-		line-height: 40px;
-		width: 680px;
-		max-width: 100%;
-		margin: auto;
-
-		@media ($mdWidth) {
-
-			font-size: 20px;
-			line-height: 30px;
-
-		}
-
-	}
+    }
 
 }
