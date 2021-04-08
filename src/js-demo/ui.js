@@ -108,6 +108,7 @@ function formatSize(size) {
 
 let files, nexttoken
 let isLoadingFiles = false
+let blockLoadingFiles = false
 
 async function initFileLoadOnScroll(){
   window.addEventListener('scroll', async () => {
@@ -115,7 +116,7 @@ async function initFileLoadOnScroll(){
     if(!scrollEnd){
       return
     }
-    if(isLoadingFiles){
+    if(isLoadingFiles || blockLoadingFiles){
       return
     }
     if(nexttoken == null){
@@ -237,12 +238,14 @@ function showFileDetails(id) {
         ensureWalletConnected();
         if (isOwner) {
             Modal.modalShow("waiting", "Waiting for confirmation");
+            blockLoadingFiles = true
             try {
               $("#issue_nft").disabled = true
               const {nft_txhash} = await issueNFT(id);
               console.log("ISSUED", nft_txhash)
               file.nft_txhash = nft_txhash
             } finally {
+              blockLoadingFiles = false
               Modal.hideModal();
               $("#issue_nft").disabled = false
             }
