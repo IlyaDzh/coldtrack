@@ -89,7 +89,11 @@ export async function payForUpload({id, size, filename}){
 }
 
 export async function signDownloadRequest(id){
-  // TODO error
-  const params = [account, settings.message_to_sign + id];
+  const params = [account, settings.message_to_sign.download + id];
+  return ethereum.request({method: 'personal_sign', params})
+}
+
+export async function signIssueNFTRequest(id){
+  const params = [account, settings.message_to_sign.issue_nft + id];
   return ethereum.request({method: 'personal_sign', params})
 }

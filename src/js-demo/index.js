@@ -169,3 +169,9 @@ export async function downloadFile(id){
   const {nonce} = await api.request_download({id, signature})
   api.download_file(nonce)
 }
+
+export async function issueNFT(id){
+  ensureWalletConnected()
+  const signature = await eth.signIssueNFTRequest(id)
+  return api.issue_nft({id, signature})
+}

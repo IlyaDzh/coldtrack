@@ -75,3 +75,12 @@ export async function request_download({id, signature}){
 export function download_file(nonce){
   location.replace(BASE_URL + 'files/' + nonce)
 }
+
+export async function issue_nft({id, signature}){
+  const resp = await fetchAPI('issue_nft', {
+    method: 'POST', 
+    headers: {'Content-Type' : 'application/json'},
+    body: JSON.stringify({id, signature}),
+  })
+  return resp.json()
+}

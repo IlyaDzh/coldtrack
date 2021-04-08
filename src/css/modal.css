@@ -288,6 +288,10 @@
       margin-left: 24px;
     }
 
+    button {
+      margin-right: 24px;
+    }
+
 		display: flex;
 		padding: 24px;
 

@@ -4,6 +4,7 @@ import {
     requestAccount,
     uploadFile,
     downloadFile,
+    issueNFT
 } from "./index.js";
 import { settings, settingsPromise, fetchFiles } from "./api.js";
 import { getAccount } from "./eth.js";
@@ -197,6 +198,25 @@ function showFileDetails(id) {
         getAccount() != null &&
         getAccount().toLowerCase() == file.owner.toLowerCase();
 
+    function renderNFT(){
+      $("#nft-row").style = file.nft_txhash == null 
+        ? 'display: none'
+        : ''
+      if(file.nft_txhash != null){
+        $("#file-details-nft").innerText = file.id_decimal;
+        $("#file-details-nft").href =
+            //https://rinkeby.etherscan.io/token/0x36bc8e56d02b647b3955dc9651f6415a7452fb3f?a=73841564450033420334869329055173378532532944364162048613200093591027373309952
+            "https://rinkeby.etherscan.io/token/" + file.nft_contract_address +
+            '?a=' + file.id_decimal
+        $("#issue_nft").style = 'display: none'
+      } else {
+        $("#issue_nft").style = ''
+        $("#issue_nft").disabled = !isOwner;
+      }
+    }
+
+    renderNFT()
+
     $("#not_an_owner").style.display = isOwner ? "none" : "block";
 
     $("#download").disabled = !isOwner;
@@ -208,6 +228,26 @@ function showFileDetails(id) {
             Modal.modalShow("waiting", "Waiting for confirmation");
             await downloadFile(id);
             Modal.hideModal();
+        } else {
+            Modal.modalShow("failed", "You are not an owner of this file");
+        }
+    };
+    $("#issue_nft").onclick = async e => {
+        e.preventDefault();
+        ensureWalletConnected();
+        if (isOwner) {
+            Modal.modalShow("waiting", "Waiting for confirmation");
+            try {
+              $("#issue_nft").disabled = true
+              const {nft_txhash} = await issueNFT(id);
+              console.log("ISSUED", nft_txhash)
+              file.nft_txhash = nft_txhash
+            } finally {
+              Modal.hideModal();
+              $("#issue_nft").disabled = false
+            }
+            Modal.modalShow("file-details");
+            renderNFT()
         } else {
             Modal.modalShow("failed", "You are not an owner of this file");
         }
