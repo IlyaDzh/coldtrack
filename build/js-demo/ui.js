@@ -239,9 +239,8 @@ function showFileDetails(id) {
             Modal.modalShow("waiting", "Waiting for confirmation");
             try {
               $("#issue_nft").disabled = true
-              const {nft_txhash} = await issueNFT(id);
-              console.log("ISSUED", nft_txhash)
-              file.nft_txhash = nft_txhash
+              const data = await issueNFT(id);
+              Object.assign(file, data)
             } finally {
               Modal.hideModal();
               $("#issue_nft").disabled = false
