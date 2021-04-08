@@ -158,7 +158,7 @@ export async function renderFiles(data){
 					${esc(file.filename)}
 				</td>
 				<td aria-label="Date">
-					${file.creation_time}
+					${new Date(file.creation_time + 'Z').toLocaleString()}
 				</td>
 				<td aria-label="Size">
 					${formatSize(file.size)}
