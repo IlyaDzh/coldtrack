@@ -15,8 +15,8 @@
     margin: 0 auto;
 
     @media ($mdWidth) {
-        padding: 24px;
         flex-direction: column;
+        padding: 24px;
     }
 
     @media ($smWidth) {
@@ -148,6 +148,19 @@
 
     }
 
+    &__wallet {
+
+        @media ($mdWidth) {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+        }
+
+        @media (max-width: 901px) {
+            position: static;
+            margin-top: 12px;
+        }
+    }
 }
 
 .btn-menu-toggle {
