@@ -35,7 +35,7 @@ const w3cjs            = require('gulp-w3cjs');
 let config             = null;
 
 const site             = 'ColdStack';
-const domain           = 'coldstack.wndrbase.com';
+const domain           = 'coldstack.io';
 
 try {
 
@@ -56,7 +56,7 @@ gulp.task('html', function() {
 		.pipe(debug({title: 'html:'}))
 		.pipe(nunjucksRender({
 			data: {
-				url: 'http://' + domain,
+				url: 'https://' + domain,
 				site: site,
         API_PATH: process.env.API_PATH,
 			},
