@@ -89,7 +89,7 @@ gulp.task('html-touch', function() {
 		.pipe(debug({title: 'html:'}))
 		.pipe(nunjucksRender({
 			data: {
-				url: 'http://' + domain,
+				url: 'https://' + domain,
 				site: site
 			},
 			path: 'src/'
