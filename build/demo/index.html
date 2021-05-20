@@ -23,7 +23,8 @@
 
     <meta name="format-detection" content="telephone=no">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Live Demo of ColdStack: world&#39;s first aggregator for Decentralized Storage Networks such as Filecoin.">
+    <meta name="description" content="Live Demo of ColdStack: world&#39;s first aggregator for Decentralized Storage Networks such as
+Filecoin.">
     <meta name="theme-color" content="#ffffff">
 
     <meta property="og:locale" content="en_EN">
@@ -31,7 +32,8 @@
     <meta property="og:url" content="https://coldstack.io/demo/">
     <meta property="og:type" content="website">
     <meta property="og:title" content="Live Demo">
-    <meta property="og:description" content="Live Demo of ColdStack: world&#39;s first aggregator for Decentralized Storage Networks such as Filecoin.">
+    <meta property="og:description" content="Live Demo of ColdStack: world&#39;s first aggregator for Decentralized Storage Networks such as
+Filecoin.">
 
     <meta property="og:image" content="https://coldstack.io/og.png">
     <meta property="og:image:secure_url" content="https://coldstack.io/og.png">
@@ -154,64 +156,88 @@
 
             
 
-	<article class="center demo">
+<article class="center demo">
 
-		<div class="demo__content">
+    <div class="demo__content">
 
-			<h1 class="h2">
-				Live Demo
-			</h1>
+        <h1 class="h2">
+            Live Demo
+        </h1>
 
-			<p>
-				It is Live Demo of the essential features of ColdStack Storage Service. Your wallet MUST be unlocked before uploading any files. Please note that demo works in <b>RINKEBY TESTNET</b>. You can upload and download any files up to 3GB in size, Service will charge you for that and you could browse the storage transactions in the testnet. You only can download only the files you have uploaded earlier. Access permissions and file sharing are disabled in demo mode. Please feel free to contact us if you have any questions.
-			</p>
+        <p>
+            This is a Live Demo showcasing the essential features of the ColdStack Storage Service. Your wallet MUST be
+            unlocked before uploading any files. Please note that the demo works on the <b>RINKEBY TESTNET</b>, and you
+            must set your wallet to this network accordingly.
+        </p>
 
-		</div>
+        <p>
+            Upon unlocking your wallet, you will receive 1.00 testnet $CLS token for the demo. The service will charge
+            you this testnet token, and then you can upload and download any files, and browse storage transactions.
+        </p>
 
-		<form action="/" class="demo-form">
+        <p>
+            Please note our demo only supports files up to 3GB in size. You can only download files you have uploaded
+            earlier. Access permissions and file sharing are disabled in demo mode.
+        </p>
 
-			<label class="demo-form__drop">
+        <p>
+            Please feel free to contact us if you have any questions, and check out our step-by-step guide on Medium:
+            <a href="https://medium.com/coldstack/coldstack-live-demo-what-you-can-do-right-now-bfbb94a1bcd0"
+                target="_blank">
+                https://medium.com/coldstack/coldstack-live-demo-what-you-can-do-right-now-bfbb94a1bcd0
+            </a>
+        </p>
 
-				<input type="file" class="demo-form__drop-input" id='file-input'>
+    </div>
 
-				<span class="demo-form__drop-wrap" id='drop-area'>
+    <form action="/" class="demo-form">
 
-					<span class="demo-form__drop-ico">
+        <label class="demo-form__drop">
 
-						<svg width="72" height="72" viewBox="0 0 72 72"><path d="M26.36 53l-3.38-3.2L36.5 35.6l13.53 14.2L46.7 53l-6.96-7.35-.87-.91V62.5h-4.62V44.74l-.86.9-7.03 7.35zm6.26-35.92l.13.3H67V62.5H47.75v-4.63h14.63V22h-32.6l-2.43-5.33-.14-.3H10.75v41.5h14.63v4.63H6.13V11.75h24.06l2.43 5.33z" fill="#342BDB" stroke="#F5F5FC"/></svg>
+            <input type="file" class="demo-form__drop-input" id='file-input'>
 
-					</span>
+            <span class="demo-form__drop-wrap" id='drop-area'>
 
-					<span class="demo-form__drop-text">
-						Drag&amp;Drop files here, or <b>Browse Files</b>
-					</span>
+                <span class="demo-form__drop-ico">
 
-				</span>
+                    <svg width="72" height="72" viewBox="0 0 72 72">
+                        <path
+                            d="M26.36 53l-3.38-3.2L36.5 35.6l13.53 14.2L46.7 53l-6.96-7.35-.87-.91V62.5h-4.62V44.74l-.86.9-7.03 7.35zm6.26-35.92l.13.3H67V62.5H47.75v-4.63h14.63V22h-32.6l-2.43-5.33-.14-.3H10.75v41.5h14.63v4.63H6.13V11.75h24.06l2.43 5.33z"
+                            fill="#342BDB" stroke="#F5F5FC" />
+                    </svg>
 
-				<span class="demo-form__drop-uploading">
+                </span>
 
-					<span class="demo-form__drop-uploading-head">
-						Uploading
-					</span>
+                <span class="demo-form__drop-text">
+                    Drag&amp;Drop files here, or <b>Browse Files</b>
+                </span>
 
-					<span class="demo-form__drop-uploading-progress">
+            </span>
 
-						<span id='progress-bar' class="demo-form__drop-uploading-progress-bar" style="width: 0%"></span>
+            <span class="demo-form__drop-uploading">
 
-					</span>
+                <span class="demo-form__drop-uploading-head">
+                    Uploading
+                </span>
 
-					<span id=timer class="demo-form__drop-uploading-timer">
-					</span>
+                <span class="demo-form__drop-uploading-progress">
 
-				</span>
+                    <span id='progress-bar' class="demo-form__drop-uploading-progress-bar" style="width: 0%"></span>
 
-			</label>
+                </span>
 
-			<h2 class="demo-form__head">
-				Files
-			</h2>
+                <span id=timer class="demo-form__drop-uploading-timer">
+                </span>
 
-	<table class="demo-table">
+            </span>
+
+        </label>
+
+        <h2 class="demo-form__head">
+            Files
+        </h2>
+
+        	<table class="demo-table">
 
 		<thead>
 
@@ -240,9 +266,9 @@
 	</table>
 
 
-		</form>
+    </form>
 
-	</article>
+</article>
 
 
 

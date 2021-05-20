@@ -15,6 +15,21 @@
             margin: 36px 0;
             font-weight: 500;
 
+            a {
+                color: var(--blue);
+                border-bottom: 1px solid;
+
+                @media ($desktop) {
+
+                    &:hover {
+
+                        border-bottom-color: transparent;
+
+                    }
+
+                }
+            }
+
             b {
                 color: var(--orange);
                 font-weight: 400;
