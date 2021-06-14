@@ -13,7 +13,7 @@
     &__logo {
         display: flex;
         flex-wrap: wrap;
-        justify-content: center;
+        justify-content: space-between;
         align-items: center;
         margin: 36px -32px 54px;
 
@@ -24,6 +24,7 @@
 
         @media ($mdWidth) {
             margin: 24px -18px 38px;
+            justify-content: center;
 
             &>a,
             &>div {
