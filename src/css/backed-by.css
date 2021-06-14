@@ -15,11 +15,11 @@
         flex-wrap: wrap;
         justify-content: center;
         align-items: center;
-        margin: 36px -22px 54px;
+        margin: 36px -32px 54px;
 
         &>a,
         &>div {
-            margin: 32px 22px;
+            margin: 32px;
         }
 
         @media ($mdWidth) {
